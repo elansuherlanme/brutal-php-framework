@@ -1,0 +1,6 @@
+{
+    "require": {
+        "symfony/routing": "^4.3",
+        "twig/twig": "^2.11"
+    }
+}
