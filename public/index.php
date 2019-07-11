@@ -8,11 +8,23 @@
 
 	require __DIR__ . '/../AppController.php';
 
-	$memcache = new Memcached();
-	$memcache->addServer('127.0.0.1', 11211);
+	$isMemcachedNotFound = true;
 
-  	$routeConfigKey = 'RouteConfigKey';
-  	$routeConfig = $memcache->get($routeConfigKey);
+	if(class_exists('Memcached')) {
+    	$isMemcachedNotFound = false;
+	}
+
+	if(!$isMemcachedNotFound) {
+		$memcache = new Memcached();
+		$memcache->addServer('127.0.0.1', 11211);
+	}
+
+  	if(!$isMemcachedNotFound) {
+  		$routeConfigKey = 'RouteConfigKey';
+  		$routeConfig = $memcache->get($routeConfigKey);
+  	} else {
+  		$routeConfig = false;
+  	}
 
   	if(!$routeConfig) {
 		$arrRoute['route']['app.index'] = new Route('/', ['_method' => 'index']);
@@ -33,19 +45,27 @@
 		$matcher = new UrlMatcher($arrRoute['routes'], $arrRoute['context']);
 		$arrRoute['matcher'] = $matcher;
 
-		$memcache->set($routeConfigKey, $arrRoute);
+		if(!$isMemcachedNotFound) {
+			$memcache->set($routeConfigKey, $arrRoute);
+		}
 
 		$routeConfig = $arrRoute;
 	}
 
-	$twigConfigKey = 'TwigConfigKey';
-	$twig = $memcache->get($twigConfigKey);
+	if(!$isMemcachedNotFound) {
+		$twigConfigKey = 'TwigConfigKey';
+		$twig = $memcache->get($twigConfigKey);
+	} else {
+		$twig = false;
+	}
 
 	if(!$twig) {
 		$twigLoader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../templates');
   		$twig = new \Twig\Environment($twigLoader, ['cache' => __DIR__ . '/../cache/twig']);
 
-  		$memcache->set($twigConfigKey, $twig);
+  		if(!$isMemcachedNotFound) {
+  			$memcache->set($twigConfigKey, $twig);
+  		}
 	}
 
 	$pathInfo = rtrim($_SERVER['PATH_INFO'], '/');
