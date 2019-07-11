@@ -9,7 +9,7 @@
 	require __DIR__ . '/../AppController.php';
 
 	$memcache = new Memcached();
-    $memcache->addServer('127.0.0.1', 11211);
+	$memcache->addServer('127.0.0.1', 11211);
 
   	$routeConfigKey = 'RouteConfigKey';
   	$routeConfig = $memcache->get($routeConfigKey);
