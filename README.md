@@ -20,13 +20,13 @@ cd brutal-php-framework
 composer -vvv install 
 ```
 
-4. Test the web
+4. Test with PHP development server
 
 ```bash
 php -S 0.0.0.0:8000 -t public/
 ```
 
-5. Access from browser
+5. Open from browser
 
 ```bash
 http://localhost:8000
