@@ -4,13 +4,13 @@ Just our own way brutal PHP framework. Maybe you like it or maybe not!
 ## Usage
 1. Clone it
 
-```
+```bash
 git clone https://github.com/sonyarianto/brutal-php-framework.git
 ```
 
 2. Go to the folder
 
-```
+```bash
 cd brutal-php-framework
 ```
 
