@@ -38,7 +38,7 @@ http://localhost:8000
 6. That's it!
 
 ### What next?
-- You can add some routes
+- You can add some routes (on file `AppRoute.php`)
 - Anything you want hehehe, but later we will give more samples to give you some ideas with this framework
 
 ### Some route samples
