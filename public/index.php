@@ -62,7 +62,7 @@
   		$twig = new \Twig\Environment($twigLoader, ['cache' => __DIR__ . '/../cache/twig']);
 
   		if(!$isMemcachedNotFound) {
-  			$memcache->set($twigConfigKey, $twig);
+  			$memcache->set($twigKey, $twig);
   		}
 	}
 
