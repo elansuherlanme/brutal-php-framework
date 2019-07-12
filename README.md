@@ -14,9 +14,25 @@ git clone https://github.com/sonyarianto/brutal-php-framework.git
 cd brutal-php-framework
 ```
 
-3. Run `composer -vvv install` (make sure you already install Composer, [how to install composer here](https://getcomposer.org/download/))
+3. Install project dependencies
 
-4. To test the web, run `php -S 0.0.0.0:8000 -t public/`
+Make sure you already install Composer, [how to install composer here](https://getcomposer.org/download/)
 
-5. That's it!
+```bash
+composer -vvv install 
+```
+
+4. Test the web
+
+```bash
+php -S 0.0.0.0:8000 -t public/
+```
+
+5. Access from browser
+
+```bash
+http://localhost:8000
+```
+
+6. That's it!
 
