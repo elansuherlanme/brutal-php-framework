@@ -5,13 +5,13 @@
 		}
 
 		public function index() {
-			echo "This is index!";
+			echo "This is index page!<br><br>It just displayed only using <code>echo</code> language construct.";
 
 			return;
 		}
 
 		public function about() {
-			echo "This is about!";
+			echo "This is about page!<br><br>It just displayed only using <code>echo</code> language construct.";
 
 			return;
 		}

@@ -56,7 +56,11 @@
 
 	if(!$twig) {
 		$twigLoader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../templates');
-  		$twig = new \Twig\Environment($twigLoader, ['cache' => __DIR__ . '/../cache/twig']);
+  		if($isTwigCached) {
+  			$twig = new \Twig\Environment($twigLoader, ['cache' => __DIR__ . '/../cache/twig']);
+  		} else {
+  			$twig = new \Twig\Environment($twigLoader);
+  		}
 
   		if(!$isMemcachedClassExists) {
   			$memcache->set($twigKey, $twig);
