@@ -14,9 +14,7 @@ git clone https://github.com/sonyarianto/brutal-php-framework.git
 cd brutal-php-framework
 ```
 
-3. Install project dependencies
-
-Make sure you already install Composer, [how to install composer here](https://getcomposer.org/download/)
+3. Install project dependencies, make sure you already install Composer, [how to install composer here](https://getcomposer.org/download/)
 
 ```bash
 composer -vvv install 
