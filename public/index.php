@@ -66,12 +66,11 @@
   		}
 	}
 
-	$pathInfo = rtrim($_SERVER['REQUEST_URI'], '/');
-
 	try {
-		$parameters = $routeConfig['matcher']->match($pathInfo);
-		$methodName = $parameters['_method'];
-		'AppController'::$methodName($parameters, $twig);
+		$paramData['parameters'] = $routeConfig['matcher']->match(rtrim($_SERVER['REQUEST_URI'], '/'));
+		$paramData['twig'] = $twig;
+		$methodName = $paramData['parameters']['_method'];
+		'AppController'::$methodName($paramData);
 	} catch (Exception $e) {
 		echo $e->getMessage();
 	}

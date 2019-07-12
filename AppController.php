@@ -4,7 +4,7 @@
 			// JUST IN CASE YOU NEED IT
 		}
 
-		public function index($parameters, $twig) {
+		public function index() {
 			echo "This is index!";
 
 			return;
@@ -22,14 +22,22 @@
 			return;
 		}
 
-		public function detailContent($parameters) {
-			echo "This is detail content!";
+		public function detailContent($params) {
+			echo "The {slug} is " . $params['parameters']['slug'] . " and {id} is " . $params['parameters']['id'];
 
 			return;
 		}
 
-		public function twigSample($parameters, $twig) {
-			echo $twig->render('twig_sample.html.twig');
+		public function twigSample($params) {
+			echo $params['twig']->render('twig_sample.html.twig');
+
+			return;
+		}
+
+		public function twigSampleWithData($params) {
+			echo $params['twig']->render('twig_sample_with_data.html.twig', 
+				                         ['name' => 'John Doe',
+				                          'numbers' => [1, 2, 3, 4, 5]]);
 
 			return;
 		}
