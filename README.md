@@ -41,5 +41,15 @@ http://localhost:8000
 - You can add some routes
 - Anything you want hehehe, but later we will give more samples to give you more ideas with this framework
 
+### Some route samples
+On file `AppRoute.php` we create some routes to give you more ideas.
+
+- Route `/` is the home page (just using `echo`)
+- Route `/about` is the about page (just using `echo`)
+- Route `/phpinfo` is display PHP info page (using `phpinfo()` function)
+- Route `/twigsample` is display data with Twig templating system (it's just simple static Twig HTML page)
+- Route `/twigsamplewithdata` is display data with Twig and we send some data to Twig template (it shows dynamic content on Twig)
+- Route `/detail/{slug}/{id}` is to show route with dynamic data plus combined with Twig templating system.
+
 ### Use Case
 You can use this framework to create any simple web. I will give sample about this later.
