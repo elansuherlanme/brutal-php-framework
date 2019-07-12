@@ -39,10 +39,10 @@ http://localhost:8000
 
 ### What Next?
 - You can add some routes
-- Anything you want hehehe, but later we will give more samples to give you more ideas with this framework
+- Anything you want hehehe, but later we will give more samples to give you some ideas with this framework
 
 ### Some route samples
-On file `AppRoute.php` we create some routes to give you more ideas.
+On file `AppRoute.php` we create some routes to give you some ideas.
 
 - Route `/` is the home page (just using `echo`)
 - Route `/about` is the about page (just using `echo`)
