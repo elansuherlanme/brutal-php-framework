@@ -9,19 +9,16 @@
 	require __DIR__ . '/../AppConfig.php';
 	require __DIR__ . '/../AppController.php';
 
-
-	$isMemcachedNotFound = true;
-
 	if(class_exists('Memcached')) {
-    	$isMemcachedNotFound = false;
+    	$isMemcachedClassExists = true;
 	}
 
-	if(!$isMemcachedNotFound) {
+	if($isMemcachedClassExists) {
 		$memcache = new Memcached();
 		$memcache->addServer($memcachedHost, $memcachedPort);
 	}
 
-  	if(!$isMemcachedNotFound) {
+  	if($isMemcachedClassExists) {
   		$routeConfigKey = 'RouteConfigKey';
   		$routeConfig = $memcache->get($routeConfigKey);
   	} else {
@@ -43,14 +40,14 @@
 		$matcher = new UrlMatcher($arrRoute['routes'], $arrRoute['context']);
 		$arrRoute['matcher'] = $matcher;
 
-		if(!$isMemcachedNotFound) {
+		if($isMemcachedClassExists) {
 			$memcache->set($routeConfigKey, $arrRoute);
 		}
 
 		$routeConfig = $arrRoute;
 	}
 
-	if(!$isMemcachedNotFound) {
+	if(!$isMemcachedClassExists) {
 		$twigKey = 'TwigKey';
 		$twig = $memcache->get($twigKey);
 	} else {
@@ -61,7 +58,7 @@
 		$twigLoader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../templates');
   		$twig = new \Twig\Environment($twigLoader, ['cache' => __DIR__ . '/../cache/twig']);
 
-  		if(!$isMemcachedNotFound) {
+  		if(!$isMemcachedClassExists) {
   			$memcache->set($twigKey, $twig);
   		}
 	}
