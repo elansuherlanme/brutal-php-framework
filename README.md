@@ -37,3 +37,9 @@ http://localhost:8000
 
 6. That's it!
 
+### What Next?
+- You can add some routes
+- Anything you want hehehe, but later we will give more samples to give you more ideas with this framework
+
+### Use Case
+You can use this framework to create any simple web. I will give sample about this later.
