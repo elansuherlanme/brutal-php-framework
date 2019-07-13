@@ -52,4 +52,4 @@ On file `AppRoute.php` we create some routes to give you some ideas.
 - Route `/detail/{slug}/{id}` is to show route with dynamic data plus combined with Twig templating system.
 
 ### Use case
-You can use this framework to create any simple web. I will give sample about this later.
+You can use this framework to create any simple web. We will give sample about this later.
