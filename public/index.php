@@ -47,7 +47,7 @@
 		$routeConfig = $arrRoute;
 	}
 
-	if(!$isMemcachedClassExists) {
+	if($isMemcachedClassExists) {
 		$twigKey = 'TwigKey';
 		$twig = $memcache->get($twigKey);
 	} else {
@@ -62,7 +62,7 @@
   			$twig = new \Twig\Environment($twigLoader);
   		}
 
-  		if(!$isMemcachedClassExists) {
+  		if($isMemcachedClassExists) {
   			$memcache->set($twigKey, $twig);
   		}
 	}
