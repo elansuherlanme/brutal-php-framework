@@ -71,7 +71,8 @@
 		$paramData['parameters'] = $routeConfig['matcher']->match(rtrim($_SERVER['REQUEST_URI'], '/'));
 		$paramData['twig'] = $twig;
 		$methodName = $paramData['parameters']['_method'];
-		AppController::$methodName($paramData);
+		$controllerClass = $paramData['parameters']['_controller_class'];
+		$controllerClass::$methodName($paramData);
 	} catch (Exception $e) {
 		echo $e->getMessage();
 	}
