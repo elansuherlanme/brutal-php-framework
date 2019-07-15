@@ -6,9 +6,6 @@
 	use Symfony\Component\Routing\Route;
 	use Symfony\Component\Routing\RouteCollection;
 
-	require __DIR__ . '/../AppConfig.php';
-	require __DIR__ . '/../AppController.php';
-
 	if(class_exists('Memcached')) {
     	$isMemcachedClassExists = true;
 	}
@@ -17,6 +14,9 @@
 		$memcache = new Memcached();
 		$memcache->addServer($memcachedHost, $memcachedPort);
 	}
+
+	require __DIR__ . '/../AppConfig.php';
+	require __DIR__ . '/../AppController.php';
 
   	if($isMemcachedClassExists) {
   		$routeConfigKey = 'RouteConfigKey';
