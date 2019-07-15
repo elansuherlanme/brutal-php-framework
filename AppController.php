@@ -34,6 +34,7 @@
 		}
 
 		public function twigSample($params) {
+			// load Twig only when needed
 			require_once __DIR__ . '/php/twig_loader.php';
 
 			echo $twig->render('twig_sample.html.twig');
@@ -42,7 +43,10 @@
 		}
 
 		public function twigSampleWithData($params) {
-			echo $params['twig']->render('twig_sample_with_data.html.twig', 
+			// load Twig only when needed
+			require_once __DIR__ . '/php/twig_loader.php';
+
+			echo $twig->render('twig_sample_with_data.html.twig', 
 				                         ['name' => 'John Doe',
 				                          'numbers' => [1, 2, 3, 4, 5]]);
 
