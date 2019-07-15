@@ -10,17 +10,19 @@
 		$isMemcachedClassExists = true;
 	}
 
+	require __DIR__ . '/../AppConfig.php';
+
+	$memcache = NULL;
+
 	if($isMemcachedClassExists) {
 		$memcache = new Memcached();
 		$memcache->addServer($memcachedHost, $memcachedPort);
 	}
-
-	require __DIR__ . '/../AppConfig.php';
+	
 	require __DIR__ . '/../AppController.php';
 
   	if($isMemcachedClassExists) {
-  		$routeConfigKey = 'RouteConfigKey';
-  		$routeConfig = $memcache->get($routeConfigKey);
+  		$routeConfig = $memcache->get($memcachedRouteConfigKey);
   	} else {
   		$routeConfig = false;
   	}
@@ -41,37 +43,20 @@
 		$arrRoute['matcher'] = $matcher;
 
 		if($isMemcachedClassExists) {
-			$memcache->set($routeConfigKey, $arrRoute);
+			$memcache->set($memcachedRouteConfigKey, $arrRoute);
 		}
 
 		$routeConfig = $arrRoute;
 	}
 
-	if($isMemcachedClassExists) {
-		$twigKey = 'TwigKey';
-		$twig = $memcache->get($twigKey);
-	} else {
-		$twig = false;
-	}
-
-	if(!$twig) {
-		$twigLoader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../templates');
-  		if($isTwigCached) {
-  			$twig = new \Twig\Environment($twigLoader, ['cache' => __DIR__ . '/../cache/twig']);
-  		} else {
-  			$twig = new \Twig\Environment($twigLoader);
-  		}
-
-  		if($isMemcachedClassExists) {
-  			$memcache->set($twigKey, $twig);
-  		}
-	}
-
 	try {
 		$paramData['parameters'] = $routeConfig['matcher']->match(rtrim($_SERVER['REQUEST_URI'], '/'));
-		$paramData['twig'] = $twig;
 		$methodName = $paramData['parameters']['_method'];
 		$controllerClass = $paramData['parameters']['_controller_class'];
+		$controllerClass::$isMemcachedClassExists = $isMemcachedClassExists;
+		$controllerClass::$isTwigCached = $isTwigCached;
+		$controllerClass::$memcache = $memcache;
+		$controllerClass::$memcachedTwigKey = $memcachedTwigKey;
 		$controllerClass::$methodName($paramData);
 	} catch (Exception $e) {
 		echo $e->getMessage();

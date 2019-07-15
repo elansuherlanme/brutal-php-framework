@@ -1,5 +1,10 @@
 <?php
 	class AppController {
+		public static $isMemcachedClassExists = false;
+		public static $memcache = NULL;
+		public static $memcachedTwigKey = NULL;
+		public static $isTwigCached = false;
+
 		public function __construct() {
 			// JUST IN CASE YOU NEED IT
 		}
@@ -29,7 +34,9 @@
 		}
 
 		public function twigSample($params) {
-			echo $params['twig']->render('twig_sample.html.twig');
+			require_once __DIR__ . '/php/twig_loader.php';
+
+			echo $twig->render('twig_sample.html.twig');
 
 			return;
 		}
