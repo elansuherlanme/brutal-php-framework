@@ -7,7 +7,7 @@
 	use Symfony\Component\Routing\RouteCollection;
 
 	if(class_exists('Memcached')) {
-    	$isMemcachedClassExists = true;
+		$isMemcachedClassExists = true;
 	}
 
 	if($isMemcachedClassExists) {
